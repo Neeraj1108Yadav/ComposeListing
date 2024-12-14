@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.jetviewmodeldb.components.DefaultButton
 import com.example.jetviewmodeldb.components.InputTaskField
+import com.example.jetviewmodeldb.models.TaskModel
 import com.example.jetviewmodeldb.viewmodel.TaskViewModel
 
 
@@ -47,13 +48,16 @@ fun TaskScreen(
         ) {
             InputTaskField(text = task)
             DefaultButton {
-                viewModel.updateMessage(task.value)
+                //viewModel.updateMessage(task.value)
+                viewModel.insertTask(TaskModel(task.value))
             }
         }
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text(text = "Data $uiState")
+        uiState.forEach {
+            Text(text = "Task : $it")
+        }
     }
 }
 
