@@ -8,6 +8,9 @@ import javax.inject.Inject
 
 class TaskOperationsRepo @Inject constructor(private val appDao: AppDao) : TaskOperationListener {
 
+    override val myTasks: Flow<List<String>>
+        get() = appDao.getAllTask().map { items -> items.map { it.task } }
+
     override suspend fun getTasks(): Flow<List<String>> {
         return appDao.getAllTask().map { items -> items.map { it.task } }
     }

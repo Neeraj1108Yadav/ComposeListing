@@ -13,6 +13,7 @@ room_version = "2.6.1"
 ksp = "2.0.21-1.0.27"
 kapt = "2.1.0"
 hilt_android = "2.51.1"
+androidxHilt = "1.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +42,7 @@ androidx-room = { group = "androidx.room", name = "room-compiler", version.ref =
 androidx-room-ktx = { group = "androidx.room", name ="room-ktx", version.ref = "room_version"}
 
 #Hilt
+androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidxHilt" }
 androidx-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt_android"}
 androidx-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt_android"}
 
