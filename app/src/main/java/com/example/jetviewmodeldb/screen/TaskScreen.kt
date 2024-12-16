@@ -20,16 +20,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.jetviewmodeldb.components.DefaultButton
 import com.example.jetviewmodeldb.components.InputTaskField
+import com.example.jetviewmodeldb.models.TaskModel
+import com.example.jetviewmodeldb.sealed.TaskResult
 import com.example.jetviewmodeldb.viewmodel.TaskViewModel
 
 
 @Composable
 fun TaskScreen(
     modifier: Modifier = Modifier,
-    viewModel:TaskViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    viewModel:TaskViewModel = hiltViewModel()
 ){
     val task = remember { mutableStateOf<String>("") }
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -47,13 +50,28 @@ fun TaskScreen(
         ) {
             InputTaskField(text = task)
             DefaultButton {
-                viewModel.updateMessage(task.value)
+                //viewModel.updateMessage(task.value)
+                viewModel.insertTask(TaskModel(task.value))
             }
         }
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text(text = "Data $uiState")
+        when(uiState){
+            is TaskResult.Success ->{
+                val tasks = (uiState as TaskResult.Success<List<String>>).data
+                tasks.forEach { 
+                    Text(text = "$it")
+                }
+            }
+            is TaskResult.Error ->{
+                val error = (uiState as TaskResult.Error).message
+                Text(text = error)
+            }
+            is TaskResult.Loading ->{
+
+            }
+        }
     }
 }
 

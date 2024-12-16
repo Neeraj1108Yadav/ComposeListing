@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class TaskModel(
-    @PrimaryKey(autoGenerate = true)
-    val id:Int,
     val task:String
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    var id:Int = 0
+}
