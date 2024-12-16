@@ -13,8 +13,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4.2.1
 
-      - name: SetupJavaJDK
-        uses: actions/setup-java@4.5.0
+      - name: Setup Java JDK
+        uses: actions/setup-java@v4.5.0
         with:
           distribution: 'oracle'
           java-version: '17'
