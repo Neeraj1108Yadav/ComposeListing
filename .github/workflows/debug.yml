@@ -1,0 +1,28 @@
+name: AndroidDebugBuild
+
+on:
+  push:
+    branches: [ci_setup]
+
+jobs:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: checkout
+      uses: actions/checkout@v4.2.1
+
+    - name: SetupJavaJDK
+      uses: actions/setup-java@4.4.0
+      with:
+        distribution: 'oracle'
+        java-version: '17'
+
+    - name: BuildWithGradle
+      run: ./gradlew build
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@4.4.3
+      with:
+        name: TaskTodo.apl
+        path: app/build/outputs/apk/debug/app-debug.apk
+
