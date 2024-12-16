@@ -5,24 +5,26 @@ on:
     branches: [ci_setup]
 
 jobs:
-  runs-on: ubuntu-latest
+  build:
 
-  steps:
-    - name: checkout
-      uses: actions/checkout@v4.2.1
+    runs-on: ubuntu-latest
 
-    - name: SetupJavaJDK
-      uses: actions/setup-java@4.4.0
-      with:
-        distribution: 'oracle'
-        java-version: '17'
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.2.1
 
-    - name: BuildWithGradle
-      run: ./gradlew build
+      - name: SetupJavaJDK
+        uses: actions/setup-java@4.4.0
+        with:
+          distribution: 'oracle'
+          java-version: '17'
 
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@4.4.3
-      with:
-        name: TaskTodo.apl
-        path: app/build/outputs/apk/debug/app-debug.apk
+      - name: BuildWithGradle
+        run: ./gradlew build
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@4.4.3
+        with:
+          name: TaskTodo.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
 
