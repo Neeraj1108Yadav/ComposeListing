@@ -18,7 +18,9 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        //testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.jetviewmodeldb.HiltTestRunner"
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -68,12 +70,15 @@ dependencies {
     implementation(libs.androidx.material3)
 
     testImplementation(libs.junit)
+    androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(libs.android.truth)
+    androidTestImplementation(libs.android.truth)
 
     //Arch Components
     implementation(libs.androidx.viewmodel)
@@ -85,6 +90,18 @@ dependencies {
     implementation(libs.androidx.hilt)
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.androidx.hilt.compiler)
+
+    //Hilt Testing
+    androidTestImplementation(libs.androidx.hilt.testing)
+    kaptAndroidTest(libs.androidx.hilt.compiler)
+    testImplementation(libs.androidx.hilt.testing)
+    kaptTest(libs.androidx.hilt.compiler)
+
+    //Coroutine Test
+    testImplementation(libs.kotlin.coroutine.test)
+
+    //Roboelectric
+    testImplementation(libs.androidx.roboelectric)
 }
 
 // Allow references to generated code

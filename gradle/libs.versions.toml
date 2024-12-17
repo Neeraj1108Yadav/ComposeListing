@@ -14,6 +14,9 @@ ksp = "2.0.21-1.0.27"
 kapt = "2.1.0"
 hilt_android = "2.51.1"
 androidxHilt = "1.2.0"
+corotuine_test = "1.9.0"
+robolectric_version = "4.14.1"
+truth_version = "1.4.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +48,16 @@ androidx-room-ktx = { group = "androidx.room", name ="room-ktx", version.ref = "
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidxHilt" }
 androidx-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt_android"}
 androidx-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt_android"}
+androidx-hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt_android"}
+
+#Coroutine
+kotlin-coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "corotuine_test"}
+
+#roboelectric
+androidx-roboelectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric_version"}
+
+#truth
+android-truth = { group = "com.google.truth", name = "truth", version.ref = "truth_version"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
